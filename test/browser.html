@@ -17,7 +17,7 @@
 			 *
 			 * see details at https://github.com/ruidlopes/scopeleaks/issues#issue/1
 			 */
-			window.addEventListener("load", function(e) {
+			(window.addEventListener||window.attachEvent)("load", function(e) {
 				var p = document.createElement("p");
 				
 				p.setAttribute("id", "bar");
