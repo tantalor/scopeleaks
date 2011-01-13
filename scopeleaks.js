@@ -4,15 +4,14 @@
 	
 	var methods = {
 		_snapshot: function() {
-			var s = [];
+			var snapshot = [];
 
-			for (var i in scope) {
-				s.push(i);
-			}
+			for (var i in scope)
+				snapshot.push(i);
 
-			original = original || s;
+			original = original || snapshot;
 
-			return s;
+			return snapshot;
 		},
 		
 		_leaks: function(snapshot) {
