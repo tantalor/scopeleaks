@@ -14,7 +14,7 @@ Insert the `scopeleaks.js` script into your Web page, e.g.:
 
 	<script src="scopeleaks.js" type="text/javascript" charset="utf-8"></script>
 
-## Common.js
+## CommonJS
 
 Insert the `scopeleaks.js` script just like any other module, e.g.:
 
