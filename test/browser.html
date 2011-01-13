@@ -10,11 +10,27 @@
 				y = 2;
 			})();
 			
-			console.log(_leaks()); // x and y will leak, due to not having being declared as "var"s.
+			console.log(_leaks().toString()); // x and y will leak, due to not having being declared as "var"s.
+			
+			/*
+			 * specific test for IE/Opera DOM insertion ID leakage
+			 *
+			 * see details at https://github.com/ruidlopes/scopeleaks/issues#issue/1
+			 */
+			window.addEventListener("load", function(e) {
+				var p = document.createElement("p");
+				
+				p.setAttribute("id", "bar");
+				p.innerHTML = "injected DOM paragraph";
+				
+				document.body.appendChild(p);
+				
+				console.log(_leaks().toString());
+			}, false);
 		</script>
 	</head>
 	<body>
 		<h1>scope leaks - browser testbed</h1>
-		<p>please check the javascript console</p>
+		<p id="foo">please check the javascript console</p>
 	</body>
 </html>
