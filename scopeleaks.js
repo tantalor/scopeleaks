@@ -2,20 +2,20 @@
 	
 	var original = undefined;
 	
+	function snapshot() {
+		var snapshot = [];
+
+		for (var i in scope)
+			snapshot.push(i);
+
+		original = original || snapshot;
+
+		return snapshot;
+	};
+	
 	var methods = {
-		snapshot: function() {
-			var snapshot = [];
-
-			for (var i in scope)
-				snapshot.push(i);
-
-			original = original || snapshot;
-
-			return snapshot;
-		},
-		
 		leaks: function() {
-			var ss = methods.snapshot();
+			var ss = snapshot();
 			var leaks = [];
 
 			for (var i in ss)
@@ -32,10 +32,9 @@
   if (typeof(window) !== 'undefined') {
     window.scopeleaks = methods;
   } else if (typeof(exports) !== 'undefined') {
-    exports.snapshot = methods.snapshot;
     exports.leaks = methods.leaks;
   }
   
-	methods.snapshot();
+	snapshot();
 	
 })(typeof global !== "undefined" ? global : window);
