@@ -1,5 +1,6 @@
-(function(scope) {
+(function() {
 	
+	var scope = typeof global !== "undefined" ? global : window;
 	var original = undefined;
 	
 	function snapshot() {
@@ -35,4 +36,4 @@
   
 	snapshot();
 	
-})(typeof global !== "undefined" ? global : window);
+})();
