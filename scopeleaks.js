@@ -7,7 +7,7 @@
 
   var original = undefined;
   
-  var methods = { 
+  var scopeleaks = { 
     snapshot: function () {
       var snapshot = new Object();
 
@@ -19,7 +19,7 @@
       return snapshot;
     },
     leaks: function (snapshot) {
-      var ss = snapshot || methods.snapshot();
+      var ss = snapshot || scopeleaks.snapshot();
       var leaks = [];
 
       for (var i in ss)
@@ -34,13 +34,13 @@
   };
   
   if (typeof(window) !== 'undefined') {
-    window.scopeleaks = methods;
+    window.scopeleaks = scopeleaks;
   } else if (typeof(exports) !== 'undefined') {
-    exports.leaks = methods.leaks;
-    exports.snapshot = methods.snapshot;
+    exports.leaks = scopeleaks.leaks;
+    exports.snapshot = scopeleaks.snapshot;
   }
   
-  methods.snapshot();
+  scopeleaks.snapshot();
   
-  return methods;
+  return scopeleaks;
 })();
