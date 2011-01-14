@@ -4,10 +4,10 @@
 	var original = undefined;
 	
 	function snapshot() {
-		var snapshot = [];
+		var snapshot = new Object();
 
 		for (var i in scope)
-			snapshot.push(i);
+			snapshot[i] = 1;
 
 		original = original || snapshot;
 
@@ -22,8 +22,8 @@
 			if (
 				!(scope.document && scope.document.getElementById(ss[i]) != null) &&
 				!(typeof(scope.opera) == 'object' && scope.opera.toString() == "[object Opera]" && ss[i] == "onhashchange") &&
-				original.indexOf(ss[i]) == -1)
-				leaks.push(ss[i]);
+				!original[(i)])
+				leaks.push(i);
 		
 		return leaks;
 	};
