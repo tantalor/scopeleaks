@@ -3,7 +3,7 @@
 	var original = undefined;
 	
 	var methods = {
-		_snapshot: function() {
+		snapshot: function() {
 			var snapshot = [];
 
 			for (var i in scope)
@@ -14,8 +14,8 @@
 			return snapshot;
 		},
 		
-		_leaks: function(snapshot) {
-			var ss = snapshot || methods._snapshot();
+		leaks: function(snapshot) {
+			var ss = snapshot || methods.snapshot();
 			var leaks = [];
 
 			for (var i in ss)
@@ -29,10 +29,13 @@
 		}
 	};
 	
-	for (m in methods)
-		scope[m] = methods[m];
-	
-	
-	methods._snapshot();
+  if (typeof(window) !== 'undefined') {
+    window.scopeleaks = methods;
+  } else if (typeof(exports) !== 'undefined') {
+    exports.snapshot = methods.snapshot;
+    exports.leaks = methods.leaks;
+  }
+  
+	methods.snapshot();
 	
 })(typeof global !== "undefined" ? global : window);
