@@ -18,8 +18,8 @@
 
       return snapshot;
     },
-    leaks: function () {
-      var ss = methods.snapshot();
+    leaks: function (snapshot) {
+      var ss = snapshot || methods.snapshot();
       var leaks = [];
 
       for (var i in ss)
