@@ -36,7 +36,3 @@ This function returns the new additions to the global scope, based on a given in
 ## Additional examples
 
 More example usage can be found at the `test` directory, for both __browser__ and __CommonJS__ environments.
-
-# Notes
-
-Internally, the two functions (`_snapshot` and `_leaks`) are attached to the global scope (yes, they _leak_), albeit not being shown in the returning value from the `_leaks` function.
