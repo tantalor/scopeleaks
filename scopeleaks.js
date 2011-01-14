@@ -1,6 +1,10 @@
 (function() {
 	
-	var scope = typeof global !== "undefined" ? global : window;
+  var scope = 
+    typeof global !== "undefined" ? global :
+    typeof window !== "undefined" ? window :
+    this;
+
 	var original = undefined;
 	
 	function snapshot() {
