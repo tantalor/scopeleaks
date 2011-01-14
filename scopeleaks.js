@@ -24,8 +24,8 @@
 
       for (var i in ss)
         if (
-          !(scope.document && scope.document.getElementById(ss[i]) != null) &&
-          !(typeof(scope.opera) == 'object' && scope.opera.toString() == "[object Opera]" && ss[i] == "onhashchange") &&
+          !(scope.document && scope.document.getElementById(i) != null) &&
+          !(typeof(scope.opera) == 'object' && scope.opera.toString() == "[object Opera]" && i == "onhashchange") &&
           !original[(i)])
           leaks.push(i);
     
