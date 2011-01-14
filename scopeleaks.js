@@ -34,8 +34,7 @@
   };
   
   if (typeof(window) !== 'undefined') {
-    window._leaks = methods.leaks;
-    window._snapshot = methods.snapshot;
+    window.scopeleaks = methods;
   } else if (typeof(exports) !== 'undefined') {
     exports.leaks = methods.leaks;
     exports.snapshot = methods.snapshot;
