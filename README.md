@@ -18,8 +18,17 @@ Insert the `scopeleaks.js` script into your Web page, e.g.:
 
 Insert the `scopeleaks.js` script just like any other module, e.g.:
 
-	require("./scopeleaks");
+	var scopeleaks = require("../scopeleaks");
+	# ...
+	scopeleaks.leaks(); # returns leaks
 
+## JSC
+
+Insert the `scopeleaks.js` script just like any other module, e.g.:
+
+	var scopeleaks = load("scopeleaks.js");
+	# ...
+	scopeleaks.leaks(); # returns leaks
 
 # Usage
 
