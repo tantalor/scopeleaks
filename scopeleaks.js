@@ -36,6 +36,7 @@
 	
   if (typeof(window) !== 'undefined') {
     window.scopeleaks = {leaks: leaks};
+    original.scopeleaks = 1;
   } else if (typeof(exports) !== 'undefined') {
     exports.leaks = leaks;
   } else {
