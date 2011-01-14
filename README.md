@@ -35,4 +35,4 @@ This function returns the new additions to the global scope, based on a given in
 
 ## Additional examples
 
-More example usage can be found at the `test` directory, for both __browser__ and __CommonJS__ environments.
+More example usage can be found at the `test` directory, for both __browser__, __CommonJS__, and __JSC__ environments.
