@@ -1,38 +1,38 @@
 (function() {
-	
+  
   var scope = 
     typeof global !== "undefined" ? global :
     typeof window !== "undefined" ? window :
     this;
 
-	var original = undefined;
-	
-	var methods = { 
-	  snapshot: function () {
-  		var snapshot = new Object();
+  var original = undefined;
+  
+  var methods = { 
+    snapshot: function () {
+      var snapshot = new Object();
 
-  		for (var i in scope)
-  			snapshot[i] = 1;
+      for (var i in scope)
+        snapshot[i] = 1;
 
-  		original = original || snapshot;
+      original = original || snapshot;
 
-  		return snapshot;
-  	},
-  	leaks: function () {
-  		var ss = methods.snapshot();
-  		var leaks = [];
+      return snapshot;
+    },
+    leaks: function () {
+      var ss = methods.snapshot();
+      var leaks = [];
 
-  		for (var i in ss)
-  			if (
-  				!(scope.document && scope.document.getElementById(ss[i]) != null) &&
-  				!(typeof(scope.opera) == 'object' && scope.opera.toString() == "[object Opera]" && ss[i] == "onhashchange") &&
-  				!original[(i)])
-  				leaks.push(i);
-		
-  		return leaks;
-  	}
+      for (var i in ss)
+        if (
+          !(scope.document && scope.document.getElementById(ss[i]) != null) &&
+          !(typeof(scope.opera) == 'object' && scope.opera.toString() == "[object Opera]" && ss[i] == "onhashchange") &&
+          !original[(i)])
+          leaks.push(i);
+    
+      return leaks;
+    }
   };
-	
+  
   if (typeof(window) !== 'undefined') {
     window._leaks = methods.leaks;
     window._snapshot = methods.snapshot;
@@ -40,8 +40,8 @@
     exports.leaks = methods.leaks;
     exports.snapshot = methods.snapshot;
   }
-	
-	methods.snapshot();
+  
+  methods.snapshot();
   
   return methods;
 })();
