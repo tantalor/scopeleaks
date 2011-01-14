@@ -17,17 +17,19 @@
 			 *
 			 * see details at https://github.com/ruidlopes/scopeleaks/issues#issue/1
 			 */
-			var ael = window.addEventListener;
-			(ael||window.attachEvent)(ael?"load":"onload", function(e) {
-				var p = document.createElement("p");
-				
-				p.setAttribute("id", "bar");
-				p.innerHTML = "injected DOM paragraph";
-				
-				document.body.appendChild(p);
-				
-				console.log(scopeleaks.leaks().toString());
-			}, false);
+			(function() {
+				var ael = window.addEventListener;
+				(ael||window.attachEvent)(ael?"load":"onload", function(e) {
+					var p = document.createElement("p");
+
+					p.setAttribute("id", "bar");
+					p.innerHTML = "injected DOM paragraph";
+
+					document.body.appendChild(p);
+
+					console.log(scopeleaks.leaks().toString());
+				}, false);
+			})
 		</script>
 	</head>
 	<body>
